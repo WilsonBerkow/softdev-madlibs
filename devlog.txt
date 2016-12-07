@@ -7,3 +7,6 @@ Created strcuture of project folders, Created some placeholder files so that git
 
 karolR -- 2016-12-07 12:07
 Imported bootstrap template into the place of the placeholder html file. Set page title. Coordinating with app.py developer for variable names.
+
+karolR -- 2016-12-07 12:31
+Worked on homepage, created custom css file to override bootstrap styling. Main structure of homepage is up. No forms, links, or variables are integrated yet.
