@@ -2,7 +2,7 @@ from flask import Flask
 import dbutil
 from api import reddit, bluemix
 
-db = dbutil.initdb()
+dbutil.initdb()
 
 app = Flask(__name__)
 
