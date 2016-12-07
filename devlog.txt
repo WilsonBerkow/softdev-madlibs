@@ -1,3 +1,8 @@
+12/07/2016
+	Kenneth
+		HTTP POST/GET should be working now!
+		Worked on Reddit API access
+
 12/06/2016
 	Kenneth
 		Added skeleton app.py
