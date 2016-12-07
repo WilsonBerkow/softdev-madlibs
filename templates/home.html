@@ -8,8 +8,10 @@
 	<title>Reddit Madlibs</title>
 
 	<!-- Bootstrap -->
+	<link href="../utils/css/bootstrap.min.css" rel="stylesheet">
 	<link href="utils/css/bootstrap.min.css" rel="stylesheet">
-	<link href="demo.css" rel="stylesheet">
+	<link href="../utils/custom.css" rel="stylesheet">
+	<link href="utils/custom.css" rel="stylesheet">
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -20,23 +22,30 @@
 </head>
 <body>
 	<div class="container">
-		<h1>Banner</h1>
-		<div class="well">
-			<hr />
-			<div class="row">
-				<div class="col-md-6">1</div>
-				<div class="col-md-6">2</div>
+		<h1><center>Reddit Madlibs</center></h1>
+		<hr/>
+		<div class="row">
+			<center>
+			<div class="col-md-6">
+				<div class="form-group">
+					<label for="usr">Subreddit 1</label>
+					<input type="text" class="form-control" id="usr">
+				</div>
 			</div>
-
-			<div class="form-group">
-				<label for="usr">Input</label>
-				<input type="text" class="form-control" id="usr">
+			<div class="col-md-6">
+				<div class="form-group">
+					<label for="pwd">Subreddit 2</label>
+					<input type="password" class="form-control" id="pwd">
+				</div>
 			</div>
-			<div class="form-group">
-				<label for="pwd">Input</label>
-				<input type="password" class="form-control" id="pwd">
-			</div>
+			<center>
 		</div>
+
+		<br><br><br>
+		<center>
+			<button type="button" class="btn btn-success">MASH!</button>
+		</center>
+
 	</div>
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
