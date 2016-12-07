@@ -8,9 +8,13 @@ Created strcuture of project folders, Created some placeholder files so that git
 karolR -- 2016-12-07 12:07
 Imported bootstrap template into the place of the placeholder html file. Set page title. Coordinating with app.py developer for variable names.
 
+WilsonBerkow -- 2016-12-07 12:15
+Write database intialization and define database schema
+
 karolR -- 2016-12-07 12:31
 Worked on homepage, created custom css file to override bootstrap styling. Main structure of homepage is up. No forms, links, or variables are integrated yet.
 
-WilsonBerkow -- 2016-12-07 [12:15 and 3:19]
+WilsonBerkow -- 2016-12-07 3:19
 Create util funtions for adding mashes to and retrieving recent mashes from an
-sqlite3 database.
+sqlite3 database, and change the database schema to identify posts by their
+URLs, rather than an abritrary integer identifier.
