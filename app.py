@@ -1,5 +1,8 @@
 from flask import Flask
+import dbutil
 from api import reddit, bluemix
+
+db = dbutil.initdb()
 
 app = Flask(__name__)
 
@@ -12,3 +15,4 @@ if __name__ == '__main__':
   reddit.REDIRECT_URI = "http://127.0.0.1:5000/reddit_callback"
   print reddit.authURL()
   app.run()
+
