@@ -1,4 +1,9 @@
 DEVLOG
+Reddit - Madlibs
+
 
 karolR -- 2016-12-06 12:25
 Created strcuture of project folders, Created some placeholder files so that git tracks the folders. Imported the bootstrap framework. Began work on the html homepage file.
+
+karolR -- 2016-12-07 12:07
+Imported bootstrap template into the place of the placeholder html file. Set page title. Coordinating with app.py developer for variable names.
