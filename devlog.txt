@@ -1,0 +1,4 @@
+12/06/2016
+	Kenneth
+		Added skeleton app.py
+		Began work on accessing Reddit API
