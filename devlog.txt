@@ -1,9 +1,36 @@
-12/07/2016
-	Kenneth
-		HTTP POST/GET should be working now!
-		Worked on Reddit API access
+DEVLOG
+Reddit - Madlibs
 
-12/06/2016
-	Kenneth
-		Added skeleton app.py
-		Began work on accessing Reddit API
+karolR -- 2016-12-06 12:25
+	Created structure of project folders
+	Created some placeholder files so that git tracks the folders
+	Imported the bootstrap framework
+	Began work on the html homepage file
+	
+kli -- 2016-12-06 2:51
+Added skeleton app.py and began work on accessing Reddit API.
+
+karolR -- 2016-12-07 12:07
+	Imported bootstrap template into the place of the placeholder html file
+	Set page title
+	Coordinated with app.py developer for variable names.
+
+WilsonBerkow -- 2016-12-07 12:15
+	Wrote database intialization
+	Defined database schema
+
+karolR -- 2016-12-07 12:31
+	Worked on homepage
+	Created custom css file to override bootstrap styling
+	Main structure of homepage is up.
+	No forms, links, or variables are integrated yet.
+
+WilsonBerkow -- 2016-12-07 3:19
+	Created util funtions for adding mashes to and retrieving recent mashes from an
+	sqlite3 database
+	Changed the database schema to identify posts by their URLs, rather than an
+	arbitrary integer identifier.
+
+kli -- 2016-12-07 3:36
+	Added POST/GET requests to http module
+	Made progress in the reddit module
