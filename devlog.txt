@@ -34,3 +34,8 @@ WilsonBerkow -- 2016-12-07 3:19
 kli -- 2016-12-07 3:36
 	Added POST/GET requests to http module
 	Made progress in the reddit module
+
+karolR -- 2016-12-08 12:17
+       Updated css links in homepage html.
+       Added POST form to homepage.
+       Created div for older posts.
