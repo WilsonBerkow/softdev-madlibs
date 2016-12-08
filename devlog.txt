@@ -28,7 +28,7 @@ karolR -- 2016-12-07 12:31
 WilsonBerkow -- 2016-12-07 3:19
 	Created util funtions for adding mashes to and retrieving recent mashes from an
 	sqlite3 database
-	Changed the database schema to identify posts by their URLs, rather than an
+        Changed the database schema to identify posts by their URLs, rather than an
 	arbitrary integer identifier.
 
 kli -- 2016-12-07 3:36
@@ -39,3 +39,7 @@ karolR -- 2016-12-08 12:17
        Updated css links in homepage html.
        Added POST form to homepage.
        Created div for older posts.
+
+karolR -- 2016-12-08 12:28
+       Button in form now submits the form.
+       One of the form fields is no longer a password.
