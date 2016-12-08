@@ -6,7 +6,7 @@ karolR -- 2016-12-06 12:25
 	Created some placeholder files so that git tracks the folders
 	Imported the bootstrap framework
 	Began work on the html homepage file
-	
+
 kli -- 2016-12-06 2:51
 Added skeleton app.py and began work on accessing Reddit API.
 
@@ -34,3 +34,10 @@ WilsonBerkow -- 2016-12-07 3:19
 kli -- 2016-12-07 3:36
 	Added POST/GET requests to http module
 	Made progress in the reddit module
+
+WilsonBerkow -- 2016-12-08 12:25
+    Improved repo organization: moved dbutil.py and wutangerine.db to (previously empty)
+    data/ folder.
+    Added text editor backup files to .gitignore
+    Routed / to home.html template and /auth to Kenneth's reddit_callback() test page
+
