@@ -1,8 +1,8 @@
 from flask import Flask, request, render_template
-import dbutil
+import data
 from api import reddit, bluemix
 
-dbutil.initdb()
+data.initdb()
 
 app = Flask(__name__)
 

@@ -7,12 +7,12 @@ dbcon = None
 
 def initdb():
     '''
-    Connect to wutangerine.db. If the db didn't already exist, create
+    Connect to data/wutangerine.db. If the db didn't already exist, create
     the `mashes' and `posts' tables.
     '''
-    fname = "wutangerine.db"
+    fname = "data/wutangerine.db"
     existed = os.path.isfile(fname)
-    print "Conneting to wutangerine.db"
+    print "Conneting to data/wutangerine.db"
     if existed:
         print "which already existed"
     global dbcon
