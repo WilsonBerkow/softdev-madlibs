@@ -8,10 +8,10 @@
 	<title>Reddit Madlibs</title>
 
 	<!-- Bootstrap -->
-	<link href="../utils/css/bootstrap.min.css" rel="stylesheet">
-	<link href="utils/css/bootstrap.min.css" rel="stylesheet">
-	<link href="../utils/custom.css" rel="stylesheet">
-	<link href="utils/custom.css" rel="stylesheet">
+	<link href="../static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../static/custom.css" rel="stylesheet">
+	<link href="static/custom.css" rel="stylesheet">
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -26,25 +26,36 @@
 		<hr/>
 		<div class="row">
 			<center>
-			<div class="col-md-6">
-				<div class="form-group">
-					<label for="usr">Subreddit 1</label>
-					<input type="text" class="form-control" id="usr">
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="form-group">
-					<label for="pwd">Subreddit 2</label>
-					<input type="password" class="form-control" id="pwd">
-				</div>
-			</div>
-			<center>
+				<form method="POST" action="/home/">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="usr">Subreddit 1</label>
+							<input type="text" class="form-control" id="usr">
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="pwd">Subreddit 2</label>
+							<input type="text" class="form-control" id="pwd">
+						</div>
+					</div>
+					<br><br><br><br><br>
+					<button type="submit" class="btn btn-success">MASH!</button>
+				</form>
+			</center>
 		</div>
 
-		<br><br><br>
-		<center>
-			<button type="button" class="btn btn-success">MASH!</button>
-		</center>
+		<br><br><br><br><br><br>
+		<hr/>
+
+		<div class="row">
+			<center>
+				<h2>Previous Mashes </h2>
+				<div class="col-md-12">
+
+				</div>
+			</center>
+		</div>
 
 	</div>
 

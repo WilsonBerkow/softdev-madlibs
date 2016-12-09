@@ -6,9 +6,9 @@ karolR -- 2016-12-06 12:25 PM
 	Created some placeholder files so that git tracks the folders
 	Imported the bootstrap framework
 	Began work on the html homepage file
-	
+
 kli -- 2016-12-06 2:51 PM
-Added skeleton app.py and began work on accessing Reddit API.
+	Added skeleton app.py and began work on accessing Reddit API.
 
 karolR -- 2016-12-07 12:07 PM
 	Imported bootstrap template into the place of the placeholder html file
@@ -28,12 +28,27 @@ karolR -- 2016-12-07 12:31 PM
 WilsonBerkow -- 2016-12-07 3:19 PM
 	Created util funtions for adding mashes to and retrieving recent mashes from an
 	sqlite3 database
-	Changed the database schema to identify posts by their URLs, rather than an
+        Changed the database schema to identify posts by their URLs, rather than an
 	arbitrary integer identifier.
 
 kli -- 2016-12-07 3:36 PM
 	Added POST/GET requests to http module
 	Made progress in the reddit module
+
+karolR -- 2016-12-08 12:17
+  Updated css links in homepage html.
+  Added POST form to homepage.
+  Created div for older posts.
+
+WilsonBerkow -- 2016-12-08 12:25
+  Improved repo organization: moved dbutil.py and wutangerine.db to (previously empty)
+  data/ folder.
+  Added text editor backup files to .gitignore
+  Routed / to home.html template and /auth to Kenneth's reddit_callback() test page
+
+karolR -- 2016-12-08 12:28
+  Button in form now submits the form.
+  One of the form fields is no longer a password.
 
 kli -- 2016-12-08 7:36 PM
 	Successfully completed reddit oauth processing proof of concept, will shortly

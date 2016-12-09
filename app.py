@@ -1,13 +1,15 @@
-from flask import Flask, request, redirect
-import dbutil
+from flask import Flask, request, redirect, render_template
+import data
 from api import reddit, bluemix
 from util import util
-
-dbutil.initdb()
 
 app = Flask(__name__)
 
 @app.route('/')
+def home():
+  return render_template("home.html")
+
+@app.route('/auth')
 def default():
   return '<a href=%s>Authenticate</a>' % reddit.authURL('read')
 
@@ -30,6 +32,7 @@ def reddit_callback():
   return redirect('posts')
   
 if __name__ == '__main__':
+  data.initdb()
   app.debug = True
   reddit.init()
   reddit.REDIRECT_URI = 'http://127.0.0.1:5000/reddit_callback'
