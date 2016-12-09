@@ -57,3 +57,7 @@ kli -- 2016-12-08 7:36 PM
 kli -- 2016-12-08 7:59 PM
 	Refactored Reddit API keys and tokens into separate, ignored text files
   Added some exception handling and error messages
+
+kli -- 2016-12-09 12:31 PM
+	Standardized Reddit token filename
+	Parsed JSON data from Reddit API
