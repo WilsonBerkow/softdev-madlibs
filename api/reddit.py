@@ -84,7 +84,7 @@ def getToken():
 
     CURRENT_TOKEN = obj['access_token']
     TOKEN_EXPIRATION = datetime.datetime.utcnow() + datetime.timedelta(seconds = obj['expires_in'])
-    f = open('token', 'w')
+    f = open(TOKEN_FILE, 'w')
     f.write('%s\n%s\n%s' % (CURRENT_TOKEN, TOKEN_EXPIRATION.strftime(DATETIME_FORMAT), REFRESH_TOKEN))
     f.close()
     return CURRENT_TOKEN
@@ -104,7 +104,7 @@ def getToken():
     REFRESH_TOKEN = obj['refresh_token']
     TOKEN_EXPIRATION = datetime.datetime.utcnow() + datetime.timedelta(seconds = obj['expires_in'])
     
-    f = open('token', 'w')
+    f = open(TOKEN_FILE, 'w')
     f.write('%s\n%s\n%s' % (CURRENT_TOKEN, TOKEN_EXPIRATION.strftime(DATETIME_FORMAT), REFRESH_TOKEN))
     f.close()
 
