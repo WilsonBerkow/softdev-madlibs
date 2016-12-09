@@ -84,7 +84,7 @@ def getToken():
 
     CURRENT_TOKEN = obj['access_token']
     TOKEN_EXPIRATION = datetime.datetime.utcnow() + datetime.timedelta(seconds = obj['expires_in'])
-    f = open('token', 'w')
+    f = open(TOKEN_FILE, 'w')
     f.write('%s\n%s\n%s' % (CURRENT_TOKEN, TOKEN_EXPIRATION.strftime(DATETIME_FORMAT), REFRESH_TOKEN))
     f.close()
     return CURRENT_TOKEN
@@ -104,7 +104,7 @@ def getToken():
     REFRESH_TOKEN = obj['refresh_token']
     TOKEN_EXPIRATION = datetime.datetime.utcnow() + datetime.timedelta(seconds = obj['expires_in'])
     
-    f = open('token', 'w')
+    f = open(TOKEN_FILE, 'w')
     f.write('%s\n%s\n%s' % (CURRENT_TOKEN, TOKEN_EXPIRATION.strftime(DATETIME_FORMAT), REFRESH_TOKEN))
     f.close()
 
@@ -112,7 +112,7 @@ def getToken():
   else:
     raise APIError('Token not found! Please authenticate.')
 
-def getPostsFromSubreddit(subreddit):
+def getSubredditTitles(subreddit, count):
   token = getToken()
 
   headers = {
@@ -120,7 +120,13 @@ def getPostsFromSubreddit(subreddit):
     'User-Agent': USER_AGENT
   }
 
-  url = 'https://oauth.reddit.com/r/%s/top/.json?sort=top&t=all' % subreddit
+  url = 'https://oauth.reddit.com/r/%s/top/.json?sort=top&t=all&count=%d' % (subreddit, count)
   results = http.get(url, headers)
-  return json.loads(results.read())
+  d = json.loads(results.read())
+  ret = []
+
+  for i in range(count):
+    ret.append(d['data']['children'][i]['data']['title'])
+  
+  return ret
 

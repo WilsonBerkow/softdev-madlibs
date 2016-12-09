@@ -16,8 +16,13 @@ def auth():
 @app.route('/posts/')
 def posts():
   try:
-    posts = reddit.getPostsFromSubreddit('test')
-    return str(posts)
+    titles = reddit.getSubredditTitles('AskReddit', 20)
+    ret = ''
+
+    for title in titles:
+      ret += title + '<br><br>'
+      
+    return ret
   except reddit.APIError:
     return redirect('auth')    
 

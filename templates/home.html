@@ -26,27 +26,32 @@
 		<hr/>
 		<div class="row">
 			<center>
-				<form method="POST" action="/home/">
+				<form method="GET" action="/">
 					<div class="col-md-6">
 						<div class="form-group">
 							<label for="usr">Subreddit 1</label>
-							<input type="text" class="form-control" id="usr">
+							<input type="text" class="form-control" id="subreddit1">
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
 							<label for="pwd">Subreddit 2</label>
-							<input type="text" class="form-control" id="pwd">
+							<input type="text" class="form-control" id="subreddit2">
 						</div>
 					</div>
 					<br><br><br><br><br>
-					<button type="submit" class="btn btn-success">MASH!</button>
+					<button type="submit" action="/" class="btn btn-success">MASH!</button>
 				</form>
 			</center>
 		</div>
 
 		<br><br><br><br><br><br>
+		<div class="well">{{subreddit1}} Mash result will be here. {{subbreddit2}}</div>
 		<hr/>
+		<center>
+		<button action="/posts/" type="submit" class="btn btn-warning">Posts</button>
+
+	</center>
 
 		<div class="row">
 			<center>
@@ -58,6 +63,7 @@
 		</div>
 
 	</div>
+
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
