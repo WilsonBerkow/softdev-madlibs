@@ -47,8 +47,8 @@ WilsonBerkow -- 2016-12-08 12:25
   Routed / to home.html template and /auth to Kenneth's reddit_callback() test page
 
 karolR -- 2016-12-08 12:28
-  Button in form now submits the form.
-  One of the form fields is no longer a password.
+  Button in form now submits the form
+  One of the form fields is no longer a password
 
 kli -- 2016-12-08 7:36 PM
 	Successfully completed reddit oauth processing proof of concept, will shortly
@@ -62,6 +62,10 @@ kli -- 2016-12-09 12:31 PM
 	Standardized Reddit token filename
 	Parsed JSON data from Reddit API
 
-karolR -- 2016-12-09 12:38
-       Started working on receiving and displaying mash results from app.py.
-       Altered some variable names.
+karolR -- 2016-12-09 12:38 PM
+  Started working on receiving and displaying mash results from app.py
+  Altered some variable names
+
+kli -- 2016-12-09 2:48 PM
+	Realized bluemix wasn't going to work for sentiment analysis, switched gears
+	to text-processing.com api which works fine
