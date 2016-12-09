@@ -53,3 +53,7 @@ karolR -- 2016-12-08 12:28
 kli -- 2016-12-08 7:36 PM
 	Successfully completed reddit oauth processing proof of concept, will shortly
 	implement interface functions for Flask developer
+
+kli -- 2016-12-08 7:59 PM
+	Refactored Reddit API keys and tokens into separate, ignored text files
+  Added some exception handling and error messages
