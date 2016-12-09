@@ -1,4 +1,5 @@
 reddit_keys
+reddit_token
 *.pyc
 */*.pyc
 test.py

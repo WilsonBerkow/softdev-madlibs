@@ -10,12 +10,16 @@ def home():
   return render_template("home.html")
 
 @app.route('/auth')
-def default():
+def auth():
   return '<a href=%s>Authenticate</a>' % reddit.authURL('read')
 
 @app.route('/posts/')
 def posts():
-  return str(reddit.getPostsFromSubreddit('test'))
+  try:
+    posts = reddit.getPostsFromSubreddit('test')
+    return str(posts)
+  except reddit.APIError:
+    return redirect('auth')    
 
 @app.route('/reddit_callback')
 def reddit_callback():
@@ -24,7 +28,7 @@ def reddit_callback():
   state = util.getValue(request.args, 'state')
   
   if error:
-    raise('Error: ' + error)
+    raise Exception('Error: ' + error)
 
   print 'Authenticated successfully!'
     

@@ -16,8 +16,14 @@ AUTH_CODE = None
 CURRENT_TOKEN = None
 TOKEN_EXPIRATION = None
 REFRESH_TOKEN = None
-TOKEN_FILE = 'token'
+TOKEN_FILE = 'reddit_token'
 DATETIME_FORMAT = '%Y-%m-%d %H:%M:%S.%f'
+
+class Error(Exception):
+  pass
+
+class APIError(Error):
+  pass
 
 def init():
   global CLIENT_ID, CLIENT_SECRET, CURRENT_TOKEN, TOKEN_EXPIRATION, REFRESH_TOKEN
@@ -35,10 +41,8 @@ def init():
 
 def authURL(scope):
   if not REDIRECT_URI:
-    raise Exception('Redirect URI must be defined!')
+    raise Error('Redirect URI must be defined!')
 
-  print REDIRECT_URI
-    
   params = {
     'client_id': CLIENT_ID,
     'response_type': 'code',
@@ -54,7 +58,7 @@ def getToken():
   global AUTH_CODE, CURRENT_TOKEN, TOKEN_EXPIRATION, REFRESH_TOKEN
   
   if not REDIRECT_URI:
-    raise Exception('Redirect URI must be defined!')
+    raise Error('Redirect URI must be defined!')
 
   url = 'https://www.reddit.com/api/v1/access_token'
 
@@ -106,15 +110,11 @@ def getToken():
 
     return CURRENT_TOKEN
   else:
-    print 'Unable to get token! Please authenticate with Reddit first.'
-    return None
+    raise APIError('Token not found! Please authenticate.')
 
 def getPostsFromSubreddit(subreddit):
   token = getToken()
 
-  if not token:
-    return {}
-  
   headers = {
     'Authorization': 'Bearer ' + token,
     'User-Agent': USER_AGENT
