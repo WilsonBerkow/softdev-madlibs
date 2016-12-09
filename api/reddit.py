@@ -5,10 +5,13 @@ import urllib2
 import json
 import os.path
 
-CLIENT_ID = 'jwTgn4ggRNAGiw' # Fill this in with your client ID
-CLIENT_SECRET = '4yphEGmjvuEEYBXyulBMjSj2uJs' # Fill this in with your client secret
+CLIENT_ID = None # Read from file
+CLIENT_SECRET = None # Read from file
+KEY_FILE = 'reddit_keys'
+
 REDIRECT_URI = None # Define in app.py
 USER_AGENT = 'Web:madlibs_for_reddit:v0.1 (by /u/teamredteam)'
+
 AUTH_CODE = None
 CURRENT_TOKEN = None
 TOKEN_EXPIRATION = None
@@ -17,13 +20,18 @@ TOKEN_FILE = 'token'
 DATETIME_FORMAT = '%Y-%m-%d %H:%M:%S.%f'
 
 def init():
-  global CURRENT_TOKEN, TOKEN_EXPIRATION, REFRESH_TOKEN
+  global CLIENT_ID, CLIENT_SECRET, CURRENT_TOKEN, TOKEN_EXPIRATION, REFRESH_TOKEN
+
+  if os.path.isfile(KEY_FILE):
+    s = open(KEY_FILE).read().split('\n')
+    CLIENT_ID = s[0]
+    CLIENT_SECRET = s[1]
   
   if os.path.isfile(TOKEN_FILE):
     s = open(TOKEN_FILE).read().split('\n')
     CURRENT_TOKEN = s[0]
     TOKEN_EXPIRATION = datetime.datetime.strptime(s[1], DATETIME_FORMAT)
-    REFRESH_TOKEN = s[2]    
+    REFRESH_TOKEN = s[2]
 
 def authURL(scope):
   if not REDIRECT_URI:
