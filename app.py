@@ -1,6 +1,6 @@
 from flask import Flask, request, redirect, render_template
 import data
-from api import reddit, bluemix
+from api import reddit, text_processing
 from util import util
 
 app = Flask(__name__)

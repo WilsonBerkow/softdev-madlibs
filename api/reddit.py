@@ -43,7 +43,7 @@ def authURL(scope):
   if not REDIRECT_URI:
     raise Error('Redirect URI must be defined!')
 
-  params = {
+  data = {
     'client_id': CLIENT_ID,
     'response_type': 'code',
     'state': 'test',
@@ -52,7 +52,7 @@ def authURL(scope):
     'scope': scope
   }
 
-  return 'https://www.reddit.com/api/v1/authorize?' + urllib.urlencode(params)
+  return 'https://www.reddit.com/api/v1/authorize?' + urllib.urlencode(data)
 
 def getToken():
   global AUTH_CODE, CURRENT_TOKEN, TOKEN_EXPIRATION, REFRESH_TOKEN
@@ -74,12 +74,12 @@ def getToken():
 
     print 'Refreshing token...'
       
-    params = {
+    data = {
       'grant_type': 'refresh_token',
       'refresh_token': REFRESH_TOKEN
     }
 
-    results = http.post(url, headers, params)
+    results = http.post(url, headers, data)
     obj = json.loads(results.read())
 
     CURRENT_TOKEN = obj['access_token']
@@ -91,13 +91,13 @@ def getToken():
   elif AUTH_CODE:
     print 'Acquiring token with authentication code...'
     
-    params = {
+    data = {
       'grant_type': 'authorization_code',
       'code': AUTH_CODE,
       'redirect_uri': REDIRECT_URI
     }
 
-    results = http.post(url, headers, params)
+    results = http.post(url, headers, data)
     obj = json.loads(results.read())
 
     CURRENT_TOKEN = obj['access_token']
