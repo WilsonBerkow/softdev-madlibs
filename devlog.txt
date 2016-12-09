@@ -61,3 +61,7 @@ kli -- 2016-12-08 7:59 PM
 kli -- 2016-12-09 12:31 PM
 	Standardized Reddit token filename
 	Parsed JSON data from Reddit API
+
+karolR -- 2016-12-09 12:38
+       Started working on receiving and displaying mash results from app.py.
+       Altered some variable names.
