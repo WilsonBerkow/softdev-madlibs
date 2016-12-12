@@ -20,6 +20,8 @@
 from random import sample, randint, choice
 import api.text_processing as textproc
 import re
+import os
+import sys
 from collections import Counter
 
 def gen_ngrams(text, n):
@@ -34,14 +36,14 @@ def with_begin(lessgram, fullgram):
         if gram[:l] == lessgram:
             newc[gram] = count
     return newc
-print gen_ngrams('I am a am a am a I am', 2)
 
-with open('dictionaries/bibleform.txt') as f:
-    text = f.read()
-
-bibgrams = gen_ngrams(text, 4)
-print 'gen done'
-gram, _ = bibgrams.most_common()[0]
-while 1:
-    print gram[0],
-    gram = choice(with_begin(gram[1:], bibgrams).most_common())[0]
+if __name__ == '__main__':
+    sys.stdout = os.fdopen(sys.stdout.fileno(), 'w', 0)  # no buffer
+    with open('dictionaries/bibleform.txt') as f:
+        text = f.read()
+    bibgrams = gen_ngrams(text, 4)
+    print 'gen done'
+    gram, _ = bibgrams.most_common()[0]
+    while 1:
+        print gram[0],
+        gram = choice(with_begin(gram[1:], bibgrams).most_common())[0]
