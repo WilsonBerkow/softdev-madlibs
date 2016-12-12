@@ -41,9 +41,26 @@ if __name__ == '__main__':
     sys.stdout = os.fdopen(sys.stdout.fileno(), 'w', 0)  # no buffer
     with open('dictionaries/bibleform.txt') as f:
         text = f.read()
-    bibgrams = gen_ngrams(text, 4)
+    bibgrams = gen_ngrams(text, int(sys.argv[1]))
     print 'gen done'
-    gram, _ = bibgrams.most_common()[0]
+    gram = choice(list(bibgrams.elements()))
+    story = ''
+    startwith = []
+    i = 1
+    grlist = []
     while 1:
-        print gram[0],
-        gram = choice(with_begin(gram[1:], bibgrams).most_common())[0]
+        startwith = [0]
+        i -= 1
+        while(len(startwith) == 1):
+            i += 1
+            startwith = with_begin(gram[i:], bibgrams)
+            print gram[i:]
+            print startwith
+        gram = choice(list(startwith.elements()))
+        grlist.append(gram)
+        story += ' ' + ' '.join(gram[:i + 1])
+        os.system('clear')
+        print story,'\n\n\n', grlist
+        print '\n\n\n', len(startwith)
+        
+        
