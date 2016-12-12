@@ -16,15 +16,24 @@ def auth():
 @app.route('/posts/')
 def posts():
   try:
-    titles = reddit.getSubredditTitles('AskReddit', 20)
-    ret = ''
-
-    for title in titles:
-      ret += title + '<br><br>'
-      
+    posts = reddit.getSubredditPosts('AskReddit')
+    titles = [post['title'] for post in posts]
+    ret = '<br><br>'.join(titles)
     return ret
   except reddit.APIError:
-    return redirect('auth')    
+    return redirect('auth')
+
+@app.route('/comments/')
+def comments():
+  try:
+    posts = reddit.getSubredditPosts('AskReddit', 1)
+    postID = posts[0]['id']
+    comments = reddit.getTopLevelComments('AskReddit', postID)
+    bodies = [comment['body'] for comment in comments]
+    ret = '<br><br>'.join(bodies)
+    return ret
+  except reddit.APIError:
+    return redirect('auth')
 
 @app.route('/reddit_callback')
 def reddit_callback():
