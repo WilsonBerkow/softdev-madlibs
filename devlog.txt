@@ -69,3 +69,7 @@ karolR -- 2016-12-09 12:38 PM
 kli -- 2016-12-09 2:48 PM
 	Realized bluemix wasn't going to work for sentiment analysis, switched gears
 	to text-processing.com api which works fine
+
+kli -- 2016-12-12 3:32 PM
+	Added top-level comment processing for Reddit, see /posts/ and /comments/ in
+	app.py for example usage
