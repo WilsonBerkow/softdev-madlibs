@@ -3,8 +3,33 @@
 	font-size: 30px;
 	padding: 10px 20px;
     border-radius: 10px;
+	-webkit-transition: border-radius 0.2s, background-color 0.2s; /* For Safari 3.1 to 6.0 */
+    transition: border-radius 0.2s, background-color 0.2s;
+}
+
+.btn-success:hover{
+	font-size: 10em;
+	font-size: 30px;
+	padding: 10px 20px;
+    border-radius: 30px;
+	background-color: rgb(48, 165, 38);
 }
 
 div{
 	font-size: 1em;
+}
+
+body{
+	background-color: rgb(234, 242, 255);
+	font-family: cursive;
+}
+
+h1{
+	font-size: 3em;
+	font-weight: 900;
+	text-transform: capitalize;
+}
+
+.well{
+	background-color: rgb(204, 212, 255);
 }

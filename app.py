@@ -5,9 +5,11 @@ from util import util
 
 app = Flask(__name__)
 
+items = [1,2,2,4]
+
 @app.route('/')
 def home():
-  return render_template("home.html")
+  return render_template("home.html", titles = items)
 
 @app.route('/auth')
 def auth():
@@ -21,29 +23,28 @@ def posts():
 
     for title in titles:
       ret += title + '<br><br>'
-      
+
     return ret
   except reddit.APIError:
-    return redirect('auth')    
+    return redirect('auth')
 
 @app.route('/reddit_callback')
 def reddit_callback():
   error = util.getValue(request.args, 'error')
   code = util.getValue(request.args, 'code')
   state = util.getValue(request.args, 'state')
-  
+
   if error:
     raise Exception('Error: ' + error)
 
   print 'Authenticated successfully!'
-    
+
   reddit.AUTH_CODE = code
   return redirect('posts')
-  
+
 if __name__ == '__main__':
   data.initdb()
   app.debug = True
   reddit.init()
   reddit.REDIRECT_URI = 'http://127.0.0.1:5000/reddit_callback'
   app.run()
-
