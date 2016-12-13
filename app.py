@@ -7,18 +7,18 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    if "sub1" in request.args and "sub2" in request.args:
-        sub1 = request.args['sub1']
-        sub2 = request.args['sub2']
-        try:
-            post1 = reddit.getSubredditRandomPost(sub1, 30)
-            post2 = reddit.getSubredditRandomPost(sub2, 30)
-            # TODO: mash and pass to template
-            return render_template('home.html', post1=post1, post2=post2, sub1=sub1, sub2=sub2)
-        except reddit.APIError:
-            return redirect('auth')
+  if 'sub1' in request.args and 'sub2' in request.args:
+    sub1 = request.args['sub1']
+    sub2 = request.args['sub2']
+    try:
+      post1 = reddit.getSubredditRandomPost(sub1, 30)
+      post2 = reddit.getSubredditRandomPost(sub2, 30)
+      # TODO: mash and pass to template
+      return render_template('home.html', post1 = post1, post2 = post2, sub1 = sub1, sub2 = sub2)
+    except reddit.APIError:
+      return redirect('auth')
     else:
-        return render_template("home.html", no_posts=False)
+      return render_template('home.html', no_posts=False)
 
 @app.route('/auth')
 def auth():
@@ -56,7 +56,7 @@ def reddit_callback():
     raise Exception('Error: ' + error)
 
   print 'Authenticated successfully!'
-    
+  
   reddit.AUTH_CODE = code
   return redirect('posts')
   

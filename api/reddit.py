@@ -33,7 +33,7 @@ def init():
     s = open(KEY_FILE).read().split('\n')
     CLIENT_ID = s[0]
     CLIENT_SECRET = s[1]
-  
+    
   if os.path.isfile(TOKEN_FILE):
     s = open(TOKEN_FILE).read().split('\n')
     CURRENT_TOKEN = s[0]
@@ -71,7 +71,7 @@ def getToken():
       return CURRENT_TOKEN
 
     print 'Refreshing token...'
-      
+    
     data = {
       'grant_type': 'refresh_token',
       'refresh_token': REFRESH_TOKEN
@@ -130,14 +130,18 @@ def getSubredditPosts(subreddit, count = 0):
   return posts
 
 def getSubredditRandomPost(subreddit, count = 0):
-    posts = getSubredditPosts(subreddit, count)
-    if len(posts) > 0:
-        p = random.choice(posts)
-        return {
-            'url': 'http://reddit.com' + p[u'permalink'],
-            'title': p[u'title'],
-            'subreddit': subreddit
-        }
+  posts = getSubredditPosts(subreddit, count)
+
+  if len(posts) > 0:
+    post = random.choice(posts)
+    
+    return {
+      'url': 'http://reddit.com' + post['permalink'],
+      'title': post['title'],
+      'subreddit': subreddit,
+      'id': post['id']
+    }
+  else:
     return None
 
 def getTopLevelComments(subreddit, postID, count = 0):
