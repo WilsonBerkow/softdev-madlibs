@@ -57,9 +57,6 @@ def authURL(scope):
 def getToken():
   global AUTH_CODE, CURRENT_TOKEN, TOKEN_EXPIRATION, REFRESH_TOKEN
   
-  if not REDIRECT_URI:
-    raise Error('Redirect URI must be defined!')
-
   url = 'https://www.reddit.com/api/v1/access_token'
 
   headers = {
@@ -89,6 +86,9 @@ def getToken():
     f.close()
     return CURRENT_TOKEN
   elif AUTH_CODE:
+    if not REDIRECT_URI:
+      raise Error('Redirect URI must be defined!')
+
     print 'Acquiring token with authentication code...'
     
     data = {
@@ -112,7 +112,7 @@ def getToken():
   else:
     raise APIError('Token not found! Please authenticate.')
 
-def getSubredditTitles(subreddit, count):
+def getSubredditPosts(subreddit, count = 0):
   token = getToken()
 
   headers = {
@@ -120,13 +120,28 @@ def getSubredditTitles(subreddit, count):
     'User-Agent': USER_AGENT
   }
 
-  url = 'https://oauth.reddit.com/r/%s/top/.json?sort=top&t=all&count=%d' % (subreddit, count)
+  url = 'https://oauth.reddit.com/r/%s/top/.json?t=all' % subreddit
   results = http.get(url, headers)
   d = json.loads(results.read())
-  ret = []
+  children = d['data']['children']
+  n = min(count, len(children)) if count > 0 else len(children)
+  posts = [children[i]['data'] for i in range(n)]
+  return posts
 
-  for i in range(count):
-    ret.append(d['data']['children'][i]['data']['title'])
-  
-  return ret
+def getTopLevelComments(subreddit, postID, count = 0):
+  token = getToken()
 
+  headers = {
+    'Authorization': 'Bearer ' + token,
+    'User-Agent': USER_AGENT
+  }
+
+  url = 'https://oauth.reddit.com/r/%s/comments/%s/.json' % (subreddit, postID)
+  print url
+  results = http.get(url, headers)
+  d = json.loads(results.read())
+  print d
+  children = d[1]['data']['children'][:-1]
+  n = min(count, len(children)) if count > 0 else len(children)
+  comments = [children[i]['data'] for i in range(n)]
+  return comments
