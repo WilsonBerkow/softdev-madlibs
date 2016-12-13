@@ -39,7 +39,7 @@ print gen_ngrams('I am a am a am a I am', 2)
 with open('dictionaries/bibleform.txt') as f:
     text = f.read()
 
-bibgrams = gen_ngrams(text, 4)
+bibgrams = gen_ngrams(text, 3)
 print 'gen done'
 gram, _ = bibgrams.most_common()[0]
 while 1:
