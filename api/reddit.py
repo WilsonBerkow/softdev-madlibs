@@ -4,6 +4,7 @@ import urllib
 import urllib2
 import json
 import os.path
+import random
 
 CLIENT_ID = None # Read from file
 CLIENT_SECRET = None # Read from file
@@ -127,6 +128,17 @@ def getSubredditPosts(subreddit, count = 0):
   n = min(count, len(children)) if count > 0 else len(children)
   posts = [children[i]['data'] for i in range(n)]
   return posts
+
+def getSubredditRandomPost(subreddit, count = 0):
+    posts = getSubredditPosts(subreddit, count)
+    if len(posts) > 0:
+        p = random.choice(posts)
+        return {
+            'url': 'http://reddit.com' + p[u'permalink'],
+            'title': p[u'title'],
+            'subreddit': subreddit
+        }
+    return None
 
 def getTopLevelComments(subreddit, postID, count = 0):
   token = getToken()
