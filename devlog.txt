@@ -73,3 +73,9 @@ kli -- 2016-12-09 2:48 PM
 kli -- 2016-12-12 3:32 PM
 	Added top-level comment processing for Reddit, see /posts/ and /comments/ in
 	app.py for example usage
+
+gmarks -- 2016-12-12 ??:?? PM
+       Started n-gram sentence formation, bible is used as sample text
+
+gmarks -- 2016-12-13 8:16 PM
+       Made n-gramming work better when there isn't a good match.
