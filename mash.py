@@ -51,18 +51,16 @@ if __name__ == '__main__':
     grlist = []
     while 1:
         startwith = [0]
-        i -= 1
-        while(len(startwith) == 1):
+        i = 0
+        while(len(startwith) <= 1):  # at end, i is num of elements to be printed
             i += 1
             startwith = with_begin(gram[i:], bibgrams)
-            print gram[i:]
-            print startwith
+            # print gram[i:], 'produced', len(startwith), 'matches'
+        print ' '.join(gram[:i]),
         gram = choice(list(startwith.elements()))
         grlist.append(gram)
-        story += ' ' + ' '.join(gram[:i + 1])
-        os.system('clear')
-        print story,'\n\n\n', grlist
-        print '\n\n\n', len(startwith)
+    print grlist
+
         
         
 
