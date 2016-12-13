@@ -37,6 +37,20 @@ def with_begin(lessgram, fullgram):
             newc[gram] = count
     return newc
 
+def formSentences(gramdict, nwords, gram=0):
+    ''' puts words together goodly
+    gramdict - dictionary of grams
+    nwords - number of words to generate
+    gram - ngram of words to begin with, default is random
+    '''
+    if gram == 0:
+        gram = choice(list(bibgrams.elements()))
+    gen = ''
+    nstart = 1
+    for _ in range(nwords):
+        startwith = [0]
+        
+
 if __name__ == '__main__':
     sys.stdout = os.fdopen(sys.stdout.fileno(), 'w', 0)  # no buffer
     with open('dictionaries/bibleform.txt') as f:
