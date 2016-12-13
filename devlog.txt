@@ -80,6 +80,6 @@ gmarks -- 2016-12-12 ??:?? PM
 gmarks -- 2016-12-13 8:16 PM
        Made n-gramming work better when there isn't a good match.
 
-WilsonBerkow -- 2016-12-12 22:50
+WilsonBerkow -- 2016-12-12 9:50 PM
 	Filled in gaps in home.html template and provided more arguments, to display
 	titles of posts from the subreddits, with hyperlinks to them
