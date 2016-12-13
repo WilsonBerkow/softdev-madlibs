@@ -47,9 +47,15 @@
 
 		<br><br><br><br><br><br>
 		<div class="well">
+			{% if no_posts == 'sub1' %}
+			Subreddit /r/{{sub1}} not found!
+			{% elif no_posts == 'sub2' %}
+			Subreddit /r/{{sub2}} not found!
+			{% else %}
 			<a href="{{post1url}}">{{post1title}}</a>
 			Mash result will be here.
 			<a href="{{post2url}}">{{post2title}}</a>
+			{% endif %}
 		</div>
 		<hr/>
 		<center>
