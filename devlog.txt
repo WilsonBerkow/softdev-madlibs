@@ -69,3 +69,22 @@ karolR -- 2016-12-09 12:38 PM
 kli -- 2016-12-09 2:48 PM
 	Realized bluemix wasn't going to work for sentiment analysis, switched gears
 	to text-processing.com api which works fine
+
+kli -- 2016-12-12 3:32 PM
+	Added top-level comment processing for Reddit, see /posts/ and /comments/ in
+	app.py for example usage
+
+gmarks -- 2016-12-12 ??:?? PM
+       Started n-gram sentence formation, bible is used as sample text
+
+gmarks -- 2016-12-13 8:16 PM
+       Made n-gramming work better when there isn't a good match.
+
+WilsonBerkow -- 2016-12-12 9:50 PM
+	Filled in gaps in home.html template and provided more arguments, to choose
+	the top post from each chosen subreddit and display its title, hyperlinked
+	to the comments.
+
+WilsoBerkow -- 2016-12-12 10:30 PM
+	Made / page select a random of top 30 posts from each subreddit, to add variation
+	Created getSubredditRandomPost in api.reddit to abstract out logic in app.py

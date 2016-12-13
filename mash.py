@@ -37,18 +37,27 @@ def with_begin(lessgram, fullgram):
             newc[gram] = count
     return newc
 
-def formSentences(gramdict, nwords, gram=0):
+def formWords(gramdict, gram=0):
     ''' puts words together goodly
     gramdict - dictionary of grams
-    nwords - number of words to generate
     gram - ngram of words to begin with, default is random
     '''
     if gram == 0:
         gram = choice(list(bibgrams.elements()))
     gen = ''
-    nstart = 1
-    for _ in range(nwords):
+    startwith = []
+    i = 1
+    while 1:
         startwith = [0]
+        i = 0
+        while(len(startwith) <= 1):  # at end, i is num of elements to be printed
+            i += 1
+            startwith = with_begin(gram[i:], bibgrams)
+            # print gram[i:], 'produced', len(startwith), 'matches'
+        gen += ' '.join(gram[:i]) + ' '
+        yield gen[:-1]  # trim final space
+        gram = choice(list(startwith.elements()))
+    yield gen[:-1]
         
 
 if __name__ == '__main__':
@@ -56,25 +65,13 @@ if __name__ == '__main__':
     with open('dictionaries/bibleform.txt') as f:
         text = f.read()
     bibgrams = gen_ngrams(text, int(sys.argv[1]))
-    print 'gen done'
-    gram = choice(list(bibgrams.elements()))
-    story = ''
-    startwith = []
-    i = 1
-    grlist = []
-    while 1:
-        startwith = [0]
-        i -= 1
-        while(len(startwith) == 1):
-            i += 1
-            startwith = with_begin(gram[i:], bibgrams)
-            print gram[i:]
-            print startwith
-        gram = choice(list(startwith.elements()))
-        grlist.append(gram)
-        story += ' ' + ' '.join(gram[:i + 1])
-        os.system('clear')
-        print story,'\n\n\n', grlist
-        print '\n\n\n', len(startwith)
+    it = formWords(bibgrams)
+    n = 10
+    for i in it:
+        print i
+        n -= 1
+        if n == 0: break
+    
         
         
+

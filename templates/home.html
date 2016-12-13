@@ -30,23 +30,33 @@
 					<div class="col-md-6">
 						<div class="form-group">
 							<label for="usr">Subreddit 1</label>
-							<input type="text" class="form-control" id="subreddit1">
+							<input type="text" class="form-control" name="sub1" />
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
 							<label for="pwd">Subreddit 2</label>
-							<input type="text" class="form-control" id="subreddit2">
+							<input type="text" class="form-control" name="sub2" />
 						</div>
 					</div>
 					<br><br><br><br><br>
-					<button type="submit" action="/" class="btn btn-success">MASH!</button>
+					<button type="submit" class="btn btn-success">MASH!</button>
 				</form>
 			</center>
 		</div>
 
 		<br><br><br><br><br><br>
-		<div class="well">{{subreddit1}} Mash result will be here. {{subbreddit2}}</div>
+		<div class="well">
+			{% if post1 == None %}
+			Subreddit /r/{{sub1}} not found!
+			{% elif post2 == None %}
+			Subreddit /r/{{sub2}} not found!
+			{% else %}
+			<a href="{{post1['url']}}">{{post1['title']}}</a>
+			Mash result will be here.
+			<a href="{{post2['url']}}">{{post2['title']}}</a>
+			{% endif %}
+		</div>
 		<hr/>
 		<center>
 		<button action="/posts/" type="submit" class="btn btn-warning">Posts</button>
