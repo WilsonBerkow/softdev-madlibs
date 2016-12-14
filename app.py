@@ -5,10 +5,12 @@ from util import util
 
 app = Flask(__name__)
 
-items = [1,2,2,4]
-
 @app.route('/')
 def home():
+  post1 = None
+  post2 = None
+  sub1 = None
+  sub2 = None
   if 'sub1' in request.args and 'sub2' in request.args:
     sub1 = request.args['sub1']
     sub2 = request.args['sub2']
@@ -19,8 +21,8 @@ def home():
       return render_template('home.html', post1 = post1, post2 = post2, sub1 = sub1, sub2 = sub2)
     except reddit.APIError:
       return redirect('auth')
-    else:
-      return render_template('home.html', no_posts=False)
+  else:
+    return render_template('home.html', post1 = post1, post2 = post2, sub1 = sub1, sub2 = sub2)
 
 @app.route('/auth')
 def auth():
