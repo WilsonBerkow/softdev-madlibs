@@ -79,10 +79,7 @@ kli -- 2016-12-12 3:32 PM
 	app.py for example usage
 
 gmarks -- 2016-12-12 ??:?? PM
-       Started n-gram sentence formation, bible is used as sample text
-
-gmarks -- 2016-12-13 8:16 PM
-       Made n-gramming work better when there isn't a good match.
+  Started n-gram sentence formation, bible is used as sample text
 
 WilsonBerkow -- 2016-12-12 9:50 PM
 	Filled in gaps in home.html template and provided more arguments, to choose
@@ -92,3 +89,9 @@ WilsonBerkow -- 2016-12-12 9:50 PM
 WilsoBerkow -- 2016-12-12 10:30 PM
 	Made / page select a random of top 30 posts from each subreddit, to add variation
 	Created getSubredditRandomPost in api.reddit to abstract out logic in app.py
+
+gmarks -- 2016-12-13 8:16 PM
+  Made n-gramming work better when there isn't a good match
+
+kli - 2016-12-14 12:15 PM
+	Consolidated API keys and things into one keys file

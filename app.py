@@ -22,7 +22,7 @@ def home():
     except reddit.APIError:
       return redirect('auth')
   else:
-    return render_template('home.html', post1 = post1, post2 = post2, sub1 = sub1, sub2 = sub2)
+    return render_template('home.html', posts = None)
 
 @app.route('/auth')
 def auth():
