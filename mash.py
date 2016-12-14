@@ -37,13 +37,41 @@ def with_begin(lessgram, fullgram):
             newc[gram] = count
     return newc
 
+def formWords(gramdict, gram=0):
+    ''' puts words together goodly
+    gramdict - dictionary of grams
+    gram - ngram of words to begin with, default is random
+    '''
+    if gram == 0:
+        gram = choice(list(bibgrams.elements()))
+    gen = ''
+    startwith = []
+    i = 1
+    while 1:
+        startwith = [0]
+        i = 0
+        while(len(startwith) <= 1):  # at end, i is num of elements to be printed
+            i += 1
+            startwith = with_begin(gram[i:], bibgrams)
+            # print gram[i:], 'produced', len(startwith), 'matches'
+        gen += ' '.join(gram[:i]) + ' '
+        yield gen[:-1]  # trim final space
+        gram = choice(list(startwith.elements()))
+    yield gen[:-1]
+        
+
 if __name__ == '__main__':
     sys.stdout = os.fdopen(sys.stdout.fileno(), 'w', 0)  # no buffer
     with open('dictionaries/bibleform.txt') as f:
         text = f.read()
-    bibgrams = gen_ngrams(text, 4)
-    print 'gen done'
-    gram, _ = bibgrams.most_common()[0]
-    while 1:
-        print gram[0],
-        gram = choice(with_begin(gram[1:], bibgrams).most_common())[0]
+    bibgrams = gen_ngrams(text, int(sys.argv[1]))
+    it = formWords(bibgrams)
+    n = 10
+    for i in it:
+        print i
+        n -= 1
+        if n == 0: break
+    
+        
+        
+

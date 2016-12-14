@@ -4,6 +4,7 @@ import urllib
 import urllib2
 import json
 import os.path
+import random
 
 CLIENT_ID = None # Read from file
 CLIENT_SECRET = None # Read from file
@@ -32,7 +33,7 @@ def init():
     s = open(KEY_FILE).read().split('\n')
     CLIENT_ID = s[0]
     CLIENT_SECRET = s[1]
-  
+    
   if os.path.isfile(TOKEN_FILE):
     s = open(TOKEN_FILE).read().split('\n')
     CURRENT_TOKEN = s[0]
@@ -57,9 +58,6 @@ def authURL(scope):
 def getToken():
   global AUTH_CODE, CURRENT_TOKEN, TOKEN_EXPIRATION, REFRESH_TOKEN
   
-  if not REDIRECT_URI:
-    raise Error('Redirect URI must be defined!')
-
   url = 'https://www.reddit.com/api/v1/access_token'
 
   headers = {
@@ -73,7 +71,7 @@ def getToken():
       return CURRENT_TOKEN
 
     print 'Refreshing token...'
-      
+    
     data = {
       'grant_type': 'refresh_token',
       'refresh_token': REFRESH_TOKEN
@@ -89,6 +87,9 @@ def getToken():
     f.close()
     return CURRENT_TOKEN
   elif AUTH_CODE:
+    if not REDIRECT_URI:
+      raise Error('Redirect URI must be defined!')
+
     print 'Acquiring token with authentication code...'
     
     data = {
@@ -112,7 +113,7 @@ def getToken():
   else:
     raise APIError('Token not found! Please authenticate.')
 
-def getSubredditTitles(subreddit, count):
+def getSubredditPosts(subreddit, count = 0):
   token = getToken()
 
   headers = {
@@ -120,13 +121,43 @@ def getSubredditTitles(subreddit, count):
     'User-Agent': USER_AGENT
   }
 
-  url = 'https://oauth.reddit.com/r/%s/top/.json?sort=top&t=all&count=%d' % (subreddit, count)
+  url = 'https://oauth.reddit.com/r/%s/top/.json?t=all' % subreddit
   results = http.get(url, headers)
   d = json.loads(results.read())
-  ret = []
+  children = d['data']['children']
+  n = min(count, len(children)) if count > 0 else len(children)
+  posts = [children[i]['data'] for i in range(n)]
+  return posts
 
-  for i in range(count):
-    ret.append(d['data']['children'][i]['data']['title'])
-  
-  return ret
+def getSubredditRandomPost(subreddit, count = 0):
+  posts = getSubredditPosts(subreddit, count)
 
+  if len(posts) > 0:
+    post = random.choice(posts)
+    
+    return {
+      'url': 'http://reddit.com' + post['permalink'],
+      'title': post['title'],
+      'subreddit': subreddit,
+      'id': post['id']
+    }
+  else:
+    return None
+
+def getTopLevelComments(subreddit, postID, count = 0):
+  token = getToken()
+
+  headers = {
+    'Authorization': 'Bearer ' + token,
+    'User-Agent': USER_AGENT
+  }
+
+  url = 'https://oauth.reddit.com/r/%s/comments/%s/.json' % (subreddit, postID)
+  print url
+  results = http.get(url, headers)
+  d = json.loads(results.read())
+  print d
+  children = d[1]['data']['children'][:-1]
+  n = min(count, len(children)) if count > 0 else len(children)
+  comments = [children[i]['data'] for i in range(n)]
+  return comments
