@@ -46,6 +46,7 @@
 		</div>
 
 		<br><br><br><br><br><br>
+		{% if posts %}
 		<div class="well">
 			{% if post1 == None %}
 			Subreddit /r/{{sub1}} not found!
@@ -57,6 +58,7 @@
 			<a href="{{post2['url']}}">{{post2['title']}}</a>
 			{% endif %}
 		</div>
+		{% endif %}
 		<hr/>
 		<center>
 		<button action="/posts/" type="submit" class="btn btn-warning">Posts</button>
