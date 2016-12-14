@@ -69,3 +69,7 @@ karolR -- 2016-12-09 12:38 PM
 kli -- 2016-12-09 2:48 PM
 	Realized bluemix wasn't going to work for sentiment analysis, switched gears
 	to text-processing.com api which works fine
+
+karolR -- 2016-12-12 12:34 PM
+	Worked on custom html styling.
+	Worked on processing of input from app.py.
