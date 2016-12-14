@@ -5,6 +5,8 @@ from util import util
 
 app = Flask(__name__)
 
+items = [1,2,2,4]
+
 @app.route('/')
 def home():
   if 'sub1' in request.args and 'sub2' in request.args:
@@ -56,14 +58,12 @@ def reddit_callback():
     raise Exception('Error: ' + error)
 
   print 'Authenticated successfully!'
-  
   reddit.AUTH_CODE = code
   return redirect('posts')
-  
+
 if __name__ == '__main__':
   data.initdb()
   app.debug = True
   reddit.init()
   reddit.REDIRECT_URI = 'http://127.0.0.1:5000/reddit_callback'
   app.run()
-
