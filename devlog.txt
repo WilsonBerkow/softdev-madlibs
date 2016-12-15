@@ -126,3 +126,7 @@ karolR - 2016-12-14 11:48 PM
        Cleaned up HTML and addded CSS formatting.
        Fixed broken links to mashed subreddits.
 
+wilsonB -- 2016-12-15 12:15 AM
+	Changed santize function in util/util.py to encode smart-double-quotes as ASCII (")
+	and to use .encode('ascii', 'ignore') to skip other non-ASCII characters, rather than
+	leave them in place (which would cause the server to crash).
