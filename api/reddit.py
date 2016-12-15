@@ -1,6 +1,3 @@
-if __name__ == '__main__':
-  import os
-  os.chdir('..')
 from util import http, util
 import datetime
 import urllib

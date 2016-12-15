@@ -22,6 +22,7 @@ import re
 import os
 import sys
 from collections import Counter
+from api.reddit import init, getLotsOfCommentText as getComments
 
 def check_tuple(tup):
     bad = ['fuck', 'shit', 'ass', '://']  # i like the fact that i had to do this
@@ -88,6 +89,17 @@ def ngramFromComments(comments, n):
         gen_ngrams(text, n, counter, False)
     return counter
 
+def ngramsFromSubreddits(sr1, sr2, n=4, maxcalls=30):
+    comments1 = getComments(sr1, maxcalls / 2)
+    comments2 = getComments(sr2, maxcalls / 2)
+    grams = ngramFromComments(comments1, n) + ngramFromComments(comments2, n)
+    return grams
+
+def getComment(grams, minLen=200):
+    for i in formWords(grams):
+        if len(i) >= minLen:
+            return i
+
 def bibletest():
     sys.stdout = os.fdopen(sys.stdout.fileno(), 'w', 0)  # no buffer
     with open('dictionaries/bibleform.txt') as f:
@@ -111,4 +123,7 @@ def commenttest():
 
 
 if __name__ == '__main__':
-    commenttest()
+    init()
+    grams = ngramsFromSubreddits('politics', 'tf2')
+    for _ in range(10):
+        print getComment(grams).encode('utf-8')
