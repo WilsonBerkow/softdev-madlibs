@@ -19,7 +19,6 @@ CURRENT_TOKEN = None
 TOKEN_EXPIRATION = None
 REFRESH_TOKEN = None
 DATETIME_FORMAT = '%Y-%m-%d %H:%M:%S.%f'
-DEBUG = None
 
 class Error(Exception):
   pass
@@ -152,15 +151,11 @@ def getSubredditRandomPost(subreddit, count = 0):
   return None
 
 def parseCommentJSON(obj):
-  global DEBUG
-  
   if 'body' not in obj['data']:
     return None
   
   newComment = {'author': obj['data']['author'], 'body': obj['data']['body'], 'replies': []}
 
-  DEBUG = obj
-  
   if obj['data']['replies']:
     for reply in obj['data']['replies']['data']['children']:
       newReply = parseCommentJSON(reply)

@@ -3,3 +3,6 @@ def getValue(d, key):
     return d[key]
 
   return None
+
+def sanitize(s):
+  return s.replace(u'\u2018', '\'').replace(u'\u2019', '\'')

@@ -107,10 +107,10 @@ kennethL - 2016-12-14 8:21 PM
 	Added retrieval of nested comments and comment JSON parser
 
 karolR - 2016-12-14 10:25 PM
-			 Wrote the README file.
+	Wrote the README file.
 
 karolR - 2016-12-14 10:36 PM
-			 Fixed devlog.txt name formatting.
+	Fixed devlog.txt name formatting.
 
 wilsonB -- 2016-12-14 10:30 PM
 	Made app.py ignore query arguments if they are empty string (previously, it would crash)
@@ -119,6 +119,10 @@ wilsonB -- 2016-12-14 10:55 PM
 	Incorporate comment masher into homepage, by displaying ten comment mashes
 	from the listed subreddits
 
-kennethL - 2015-12-14 11:08 PM
+kennethL - 2016-12-14 11:08 PM
 	Added wrapper for Gabe's masher and sentiment analysis for the resulting mash
+
+karolR - 2016-12-14 11:48 PM
+       Cleaned up HTML and addded CSS formatting.
+       Fixed broken links to mashed subreddits.
 

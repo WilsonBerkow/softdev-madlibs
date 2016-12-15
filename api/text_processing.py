@@ -1,11 +1,11 @@
-from util import http
+from util import http, util
 import json
 
 def getSentiment(text):
   url = 'http://text-processing.com/api/sentiment/'
 
   data = {
-    'text': text
+    'text': util.sanitize(text)
   }
 
   results = http.post(url, data = data)
