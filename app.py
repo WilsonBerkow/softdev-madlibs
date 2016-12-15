@@ -11,7 +11,7 @@ def home():
   post2 = None
   sub1 = None
   sub2 = None
-  if 'sub1' in request.args and 'sub2' in request.args:
+  if 'sub1' in request.args and 'sub2' in request.args and request.args['sub1'] != "" and request.args['sub2'] != "":
     sub1 = request.args['sub1']
     sub2 = request.args['sub2']
     try:
