@@ -95,3 +95,9 @@ gmarks -- 2016-12-13 8:16 PM
 
 kli - 2016-12-14 12:15 PM
 	Consolidated API keys and things into one keys file
+
+gmarks - 2015-12-14 3:30 PM
+    Created comment text grabber
+
+gmarks - 2015-12-14 5:30 PM
+    Created comment text parser and ngram-er, made test files and a test in mash.py to demonstrate mashing

@@ -23,6 +23,13 @@ import os
 import sys
 from collections import Counter
 
+def check_tuple(tup):
+    bad = ['fuck', 'shit', 'ass', '://']  # i like the fact that i had to do this
+    for word in tup:
+        for no in bad:
+            if no in word:  # thats a no-no
+                return False
+    return True
 def gen_ngrams(text, n, ctr=0, needssplit=True):
     if needssplit:
         wordsplit = [i.strip() for i in text.split(' ')]
@@ -33,7 +40,9 @@ def gen_ngrams(text, n, ctr=0, needssplit=True):
         return Counter([tuple(i) for i in zip(*repeatntext)])  # pass this as args, 'abc', 'bcd, 'cde'
     else:
         for i in zip(*repeatntext):
-            ctr[tuple(i)] += 1
+            tup = tuple(i)
+            if check_tuple(tup):
+                ctr[tuple(i)] += 1
         return ctr
 
 def with_begin(lessgram, fullgram):
@@ -96,14 +105,10 @@ def commenttest():
         hscomments = eval(f.read())
     with open('../dictionaries/polcomments') as f:
         polcomments = eval(f.read())
-    gramdict = ngramFromComments(hscomments, 4) + ngramFromComments(polcomments, 4)
+    gramdict = ngramFromComments(hscomments, 3) + ngramFromComments(polcomments, 3)
     for i in formWords(gramdict):
-        print i
+        print i.encode('utf-8')
 
 
 if __name__ == '__main__':
     commenttest()
-    
-        
-        
-
