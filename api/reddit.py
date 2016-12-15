@@ -35,6 +35,7 @@ def init(redirect_uri = None):
 
   if os.path.isfile(KEY_FILE):
     s = open(KEY_FILE).read().split('\n')
+
     CLIENT_ID = s[0]
     CLIENT_SECRET = s[1]
     CURRENT_TOKEN = s[2]

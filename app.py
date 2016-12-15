@@ -1,7 +1,7 @@
 from flask import Flask, request, redirect, render_template
 import data
 from api import reddit, text_processing
-from util import util
+from util import util, mash
 
 app = Flask(__name__)
 
@@ -15,10 +15,13 @@ def home():
     sub1 = request.args['sub1']
     sub2 = request.args['sub2']
     try:
-      post1 = reddit.getSubredditRandomPost(sub1, 30)
-      post2 = reddit.getSubredditRandomPost(sub2, 30)
+      mashed = mash.getMash(sub1, sub2)
+      print mashed
+      sentiment = text_processing.getSentiment(mashed)
+      sentimentMessages = {'neg': 'That\'s not nice.', 'pos': 'Why thank you!', 'neutral': 'What\'s that supposed to mean?'}
+      
       # TODO: mash and pass to template
-      return render_template('home.html', post1 = post1, post2 = post2, sub1 = sub1, sub2 = sub2)
+      return render_template('home.html', sub1 = sub1, sub2 = sub2, mashed = mashed, sentimentMessage = sentimentMessages[sentiment])
     except reddit.APIError:
       return redirect('auth')
   else:

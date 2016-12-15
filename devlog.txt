@@ -105,3 +105,6 @@ gmarks - 2015-12-14 5:30 PM
 
 kli - 2015-12-14 8:21 PM
 	Added retrieval of nested comments and comment JSON parser
+
+kli - 2015-12-14 11:08 PM
+	Added wrapper for Gabe's masher and sentiment analysis for the resulting mash

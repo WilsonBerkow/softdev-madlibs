@@ -46,20 +46,37 @@
 			</center>
 		</div>
 		<br><br><br>
-		<div class="well">{{subreddit1}} Mash result will be here. {{subbreddit2}}</div>
+		<div class="well">
+			{{sub1}} + {{sub2}}!
+			<br><br>
+			{% if mashed %}
+			{{mashed}}
+			<br><br>
+			{{sentimentMessage}}
+			{% else %}
+			Mash result will be here.
+			{% endif %}
+		</div>
 		<br>
 
 		<br><br><br><br><br><br>
 		{% if posts %}
 		<div class="well">
-			{% if post1 == None %}
+			{% if sub1 == None %}
 			Subreddit /r/{{sub1}} not found!
-			{% elif post2 == None %}
+			{% elif sub2 == None %}
 			Subreddit /r/{{sub2}} not found!
 			{% else %}
-			<a href="{{post1['url']}}">{{post1['title']}}</a>
+			<a href="{{sub1}}">{{sub1}}</a>
+			{{mashed}}
+			{% if mashed %}
+			{{mashed}}
+			<br>
+			{{sentiment}}
+			{% else %}
 			Mash result will be here.
-			<a href="{{post2['url']}}">{{post2['title']}}</a>
+			{% endif %}
+			<a href="{{sub2}}">{{sub2}}</a>
 			{% endif %}
 		</div>
 		{% endif %}
@@ -67,18 +84,18 @@
 		<center>
 		<button action="/posts/" type="submit" class="btn btn-warning">Posts</button>
 
-	</center>
+		</center>
 
-		<div class="row">
-			<center>
-				<h2>Previous Mashes </h2>
-				<div class="col-md-12">
-					{% for item in titles %}
-					<div class="well">{{subreddit1}} Mash result will be here. {{subbreddit2}}</div>
-					{% endfor %}
-				</div>
-			</center>
-		</div>
+		<!-- <div class="row"> -->
+			<!-- <center> -->
+				<!-- <h2>Previous Mashes </h2> -->
+				<!-- <div class="col-md-12"> -->
+					<!-- {% for item in titles %} -->
+					<!-- <div class="well">{{sub1}} Mash result will be here. {{sub2}}</div> -->
+					<!-- {% endfor %} -->
+				<!-- </div> -->
+			<!-- </center> -->
+		<!-- </div> -->
 
 	</div>
 

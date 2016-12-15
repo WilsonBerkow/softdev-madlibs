@@ -121,6 +121,10 @@ def commenttest():
     for i in formWords(gramdict):
         print i.encode('utf-8')
 
+def getMash(sub1, sub2):
+  ngrams = ngramsFromSubreddits(sub1, sub2, 3, 10);
+  mashed = getComment(ngrams)
+  return mashed
 
 if __name__ == '__main__':
     init()
