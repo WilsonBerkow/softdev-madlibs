@@ -1,7 +1,7 @@
 from flask import Flask, request, redirect, render_template
 import data
 from api import reddit, text_processing
-from util import util
+from util import util, mash
 
 app = Flask(__name__)
 
@@ -17,12 +17,16 @@ def home():
     try:
       post1 = reddit.getSubredditRandomPost(sub1, 30)
       post2 = reddit.getSubredditRandomPost(sub2, 30)
-      # TODO: mash and pass to template
-      return render_template('home.html', post1 = post1, post2 = post2, sub1 = sub1, sub2 = sub2)
+      if post1 != None and post2 != None:
+        comments = []
+        grams = mash.ngramsFromSubreddits(sub1, sub2)
+        for _ in xrange(10):
+          comments += [mash.getComment(grams).encode('utf-8')]
+      return render_template('home.html', post1 = post1, post2 = post2, sub1 = sub1, sub2 = sub2, comments=comments)
     except reddit.APIError:
       return redirect('auth')
   else:
-    return render_template('home.html', posts = None)
+    return render_template('home.html', noposts = True)
 
 @app.route('/auth')
 def auth():
