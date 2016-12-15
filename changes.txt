@@ -1,0 +1,7 @@
+The following deviations from the design document have occurred during the development of Reddit Madlibs.
+
+ - The IBM BlueMix API was replaced with the text-processing API which was better suited for out sentiment analysis needs.
+ - The stretch/reach goal of having a SQL database of past posts was scrapped.
+ - All generated posts were made available on the homepage instead of being on a separate post page.
+ - The consideration of using twitter as a source of content was obliterated.
+ - A large portion of the text mashing was done through analysis and merge algorithms developed on the backend side.
