@@ -7,7 +7,7 @@ karolR -- 2016-12-06 12:25 PM
 	Imported the bootstrap framework
 	Began work on the html homepage file
 
-kli -- 2016-12-06 2:51 PM
+kennethL -- 2016-12-06 2:51 PM
 	Added skeleton app.py and began work on accessing Reddit API.
 
 karolR -- 2016-12-07 12:07 PM
@@ -15,7 +15,7 @@ karolR -- 2016-12-07 12:07 PM
 	Set page title
 	Coordinated with app.py developer for variable names.
 
-WilsonBerkow -- 2016-12-07 12:15 PM
+wilsonB -- 2016-12-07 12:15 PM
 	Wrote database intialization
 	Defined database schema
 
@@ -25,13 +25,13 @@ karolR -- 2016-12-07 12:31 PM
 	Main structure of homepage is up.
 	No forms, links, or variables are integrated yet.
 
-WilsonBerkow -- 2016-12-07 3:19 PM
+wilsonB -- 2016-12-07 3:19 PM
 	Created util funtions for adding mashes to and retrieving recent mashes from an
 	sqlite3 database
         Changed the database schema to identify posts by their URLs, rather than an
 	arbitrary integer identifier.
 
-kli -- 2016-12-07 3:36 PM
+kennethLi -- 2016-12-07 3:36 PM
 	Added POST/GET requests to http module
 	Made progress in the reddit module
 
@@ -40,7 +40,7 @@ karolR -- 2016-12-08 12:17
   Added POST form to homepage.
   Created div for older posts.
 
-WilsonBerkow -- 2016-12-08 12:25
+wilsonB -- 2016-12-08 12:25
   Improved repo organization: moved dbutil.py and wutangerine.db to (previously empty)
   data/ folder.
   Added text editor backup files to .gitignore
@@ -50,15 +50,15 @@ karolR -- 2016-12-08 12:28
   Button in form now submits the form
   One of the form fields is no longer a password
 
-kli -- 2016-12-08 7:36 PM
+kennethL -- 2016-12-08 7:36 PM
 	Successfully completed reddit oauth processing proof of concept, will shortly
 	implement interface functions for Flask developer
 
-kli -- 2016-12-08 7:59 PM
+kennethL -- 2016-12-08 7:59 PM
 	Refactored Reddit API keys and tokens into separate, ignored text files
   Added some exception handling and error messages
 
-kli -- 2016-12-09 12:31 PM
+kennethL -- 2016-12-09 12:31 PM
 	Standardized Reddit token filename
 	Parsed JSON data from Reddit API
 
@@ -66,7 +66,7 @@ karolR -- 2016-12-09 12:38 PM
   Started working on receiving and displaying mash results from app.py
   Altered some variable names
 
-kli -- 2016-12-09 2:48 PM
+kennethL -- 2016-12-09 2:48 PM
 	Realized bluemix wasn't going to work for sentiment analysis, switched gears
 	to text-processing.com api which works fine
 
@@ -74,34 +74,40 @@ karolR -- 2016-12-12 12:34 PM
 	Worked on custom html styling.
 	Worked on processing of input from app.py.
 	
-kli -- 2016-12-12 3:32 PM
+kennethL -- 2016-12-12 3:32 PM
 	Added top-level comment processing for Reddit, see /posts/ and /comments/ in
 	app.py for example usage
 
-gmarks -- 2016-12-12 ??:?? PM
+gabrielM -- 2016-12-12 ??:?? PM
   Started n-gram sentence formation, bible is used as sample text
 
-WilsonBerkow -- 2016-12-12 9:50 PM
+wilsonB -- 2016-12-12 9:50 PM
 	Filled in gaps in home.html template and provided more arguments, to choose
 	the top post from each chosen subreddit and display its title, hyperlinked
 	to the comments
 
-WilsoBerkow -- 2016-12-12 10:30 PM
+wilsonB -- 2016-12-12 10:30 PM
 	Made / page select a random of top 30 posts from each subreddit, to add variation
 	Created getSubredditRandomPost in api.reddit to abstract out logic in app.py
 
-gmarks -- 2016-12-13 8:16 PM
+gabrielM -- 2016-12-13 8:16 PM
   Made n-gramming work better when there isn't a good match
 
-kli - 2016-12-14 12:15 PM
+kennethL - 2016-12-14 12:15 PM
 	Consolidated API keys and things into one keys file
 
-gmarks - 2015-12-14 3:30 PM
+gabrielM - 2016-12-14 3:30 PM
   Created comment text grabber
 
-gmarks - 2015-12-14 5:30 PM
+gabrielM - 2016-12-14 5:30 PM
   Created comment text parser and ngram-er, made test files and a test in
 	mash.py to demonstrate mashing
 
-kli - 2015-12-14 8:21 PM
+kennethL - 2016-12-14 8:21 PM
 	Added retrieval of nested comments and comment JSON parser
+
+karolR - 2016-12-14 10:25 PM
+       Wrote the README file.
+
+karolR - 2016-12-14 10:36 PM
+       Fixed devlog.txt name formatting.
