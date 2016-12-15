@@ -5,7 +5,7 @@ A **keys** file must be placed in the root directory of the application to allow
 
 ## Site Purpose:
 
-Reddit Madlibs is a subreddit content masher that takes content from two different subreddits and produces a post using text processing and merging algorithms. It also analyzes the sentiment (in other words the emotion) expressed in the new post.
+Reddit Madlibs is a subreddit content masher that takes content from two different subreddits and produces a post using text processing and merging algorithms. It also analyzes the sentiment (or the **emotion**) expressed in the new post.
 
 ## Instructions of Use and Explanation of Backend
 To use the application, enter the names of two existing subreddits that you want to mash. The backend component fetches comment and post data from Reddit and passes the data to the text processing component.
@@ -15,12 +15,8 @@ The finished product is sent back to the user and handled by the bootstrap augme
 
 The contents of the currently produced post are accessible from the application homepage.
 
-Developed by:
-
-Kenneth Li
-
-Wilson Berkow
-
-Gabriel Marks
-
-and Karol Regula
+Developed by:  
+Kenneth Li  
+Wilson Berkow  
+Gabriel Marks  
+and Karol Regula  
