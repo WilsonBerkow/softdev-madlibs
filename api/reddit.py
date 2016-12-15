@@ -1,3 +1,6 @@
+if __name__ == '__main__':
+  import os
+  os.chdir('..')
 from util import http, util
 import datetime
 import urllib
@@ -158,3 +161,15 @@ def getTopLevelComments(subreddit, postID, count = 0):
   n = min(count, len(children)) if count > 0 else len(children)
   comments = [children[i]['data'] for i in range(n)]
   return comments
+
+def getLotsOfCommentText(subreddit, numCalls):
+  posts = getSubredditPosts(subreddit)
+  numCalls -= 1
+  lotsOfComments = []
+  for post in posts[:numCalls]:
+    comments = getTopLevelComments(subreddit, post['id'])
+    for comment in comments:
+      if comment['author'] != 'AutoModerator':  # madman himself
+        lotsOfComments.append(comment['body'])
+  return lotsOfComments
+

@@ -18,16 +18,23 @@
 
 # getPast('run')  # old api stuff
 from random import sample, randint, choice
-import api.text_processing as textproc
 import re
 import os
 import sys
 from collections import Counter
 
-def gen_ngrams(text, n):
-    wordsplit = [i.strip() for i in text.split(' ')]
+def gen_ngrams(text, n, ctr=0, needssplit=True):
+    if needssplit:
+        wordsplit = [i.strip() for i in text.split(' ')]
+    else:
+        wordsplit = text
     repeatntext = [wordsplit[i:] for i in range(n)]  # 'abcde', 'bcde', 'cde'
-    return Counter([tuple(i) for i in zip(*repeatntext)])  # pass this as args, 'abc', 'bcd, 'cde'
+    if ctr == 0:
+        return Counter([tuple(i) for i in zip(*repeatntext)])  # pass this as args, 'abc', 'bcd, 'cde'
+    else:
+        for i in zip(*repeatntext):
+            ctr[tuple(i)] += 1
+        return ctr
 
 def with_begin(lessgram, fullgram):
     l = len(lessgram)
@@ -43,7 +50,7 @@ def formWords(gramdict, gram=0):
     gram - ngram of words to begin with, default is random
     '''
     if gram == 0:
-        gram = choice(list(bibgrams.elements()))
+        gram = choice(list(gramdict.elements()))
     gen = ''
     startwith = []
     i = 1
@@ -52,15 +59,27 @@ def formWords(gramdict, gram=0):
         i = 0
         while(len(startwith) <= 1):  # at end, i is num of elements to be printed
             i += 1
-            startwith = with_begin(gram[i:], bibgrams)
+            startwith = with_begin(gram[i:], gramdict)
             # print gram[i:], 'produced', len(startwith), 'matches'
         gen += ' '.join(gram[:i]) + ' '
         yield gen[:-1]  # trim final space
         gram = choice(list(startwith.elements()))
     yield gen[:-1]
         
+def ngramFromComments(comments, n):
+    counter = Counter()
+    sep = chr(2)
+    normalized = sep.join(comments) \
+                    .replace('\t', ' ') \
+                    .replace('\n', ' ') \
+                    .lower() \
+                    .split(sep)
+    for comment in normalized:
+        text = filter(None, comment.split(' '))
+        gen_ngrams(text, n, counter, False)
+    return counter
 
-if __name__ == '__main__':
+def bibletest():
     sys.stdout = os.fdopen(sys.stdout.fileno(), 'w', 0)  # no buffer
     with open('dictionaries/bibleform.txt') as f:
         text = f.read()
@@ -71,6 +90,19 @@ if __name__ == '__main__':
         print i
         n -= 1
         if n == 0: break
+
+def commenttest():
+    with open('../dictionaries/hscomments') as f:
+        hscomments = eval(f.read())
+    with open('../dictionaries/polcomments') as f:
+        polcomments = eval(f.read())
+    gramdict = ngramFromComments(hscomments, 4) + ngramFromComments(polcomments, 4)
+    for i in formWords(gramdict):
+        print i
+
+
+if __name__ == '__main__':
+    commenttest()
     
         
         
