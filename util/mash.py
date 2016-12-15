@@ -121,10 +121,14 @@ def commenttest():
     for i in formWords(gramdict):
         print i.encode('utf-8')
 
-def getMash(sub1, sub2):
+def getMash(sub1, sub2, count = 1):
   ngrams = ngramsFromSubreddits(sub1, sub2, 3, 10);
-  mashed = getComment(ngrams)
-  return mashed
+  ret = []
+
+  for i in range(count):
+    ret.append(getComment(ngrams))
+
+  return ret
 
 if __name__ == '__main__':
     init()

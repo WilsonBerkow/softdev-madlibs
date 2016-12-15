@@ -11,21 +11,32 @@ def home():
   post2 = None
   sub1 = None
   sub2 = None
-  if 'sub1' in request.args and 'sub2' in request.args:
+  if 'sub1' in request.args and 'sub2' in request.args and request.args['sub1'] != "" and request.args['sub2'] != "":
     sub1 = request.args['sub1']
     sub2 = request.args['sub2']
     try:
-      mashed = mash.getMash(sub1, sub2)
-      print mashed
-      sentiment = text_processing.getSentiment(mashed)
       sentimentMessages = {'neg': 'That\'s not nice.', 'pos': 'Why thank you!', 'neutral': 'What\'s that supposed to mean?'}
+
+      mashed = mash.getMash(sub1, sub2, 10)
+
+      for i in range(len(mashed)):
+        text = mashed[i]
+        mashed[i] = (text, sentimentMessages[text_processing.getSentiment(text)])
       
       # TODO: mash and pass to template
-      return render_template('home.html', sub1 = sub1, sub2 = sub2, mashed = mashed, sentimentMessage = sentimentMessages[sentiment])
+      return render_template('home.html', sub1 = sub1, sub2 = sub2, mashed = mashed)
+      # post1 = reddit.getSubredditRandomPost(sub1, 30)
+      # post2 = reddit.getSubredditRandomPost(sub2, 30)
+      # if post1 != None and post2 != None:
+        # comments = []
+        # grams = mash.ngramsFromSubreddits(sub1, sub2)
+        # for _ in xrange(10):
+          # comments += [mash.getComment(grams).encode('utf-8')]
+      # return render_template('home.html', post1 = post1, post2 = post2, sub1 = sub1, sub2 = sub2, comments=comments)
     except reddit.APIError:
       return redirect('auth')
   else:
-    return render_template('home.html', posts = None)
+    return render_template('home.html', noposts = True)
 
 @app.route('/auth')
 def auth():

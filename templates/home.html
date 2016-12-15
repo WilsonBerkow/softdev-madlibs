@@ -46,38 +46,47 @@
 			</center>
 		</div>
 		<br><br><br>
-		<div class="well">
-			{{sub1}} + {{sub2}}!
-			<br><br>
-			{% if mashed %}
-			{{mashed}}
-			<br><br>
-			{{sentimentMessage}}
-			{% else %}
-			Mash result will be here.
-			{% endif %}
-		</div>
-		<br>
 
 		<br><br><br><br><br><br>
-		{% if posts %}
+		{% if not noposts %}
 		<div class="well">
 			{% if sub1 == None %}
 			Subreddit /r/{{sub1}} not found!
 			{% elif sub2 == None %}
 			Subreddit /r/{{sub2}} not found!
 			{% else %}
-			<a href="{{sub1}}">{{sub1}}</a>
-			{{mashed}}
+			<a href="{{sub1}}">{{sub1}}</a> + <a href="{{sub2}}">{{sub2}}</a>!
+			<br><br>
 			{% if mashed %}
-			{{mashed}}
+			{% for mash in mashed %}
+			{{mash[0]}}
 			<br>
-			{{sentiment}}
+			({{mash[1]}})
+			<br><br>
+			{% endfor %}
 			{% else %}
 			Mash result will be here.
 			{% endif %}
-			<a href="{{sub2}}">{{sub2}}</a>
+			<!-- {# -->
+			<!-- <p> -->
+				<!-- A top post from {{ sub1 }}: -->
+				<!-- <a href="{{post1['url']}}">{{post1['title']}}</a> -->
+			<!-- </p> -->
+			<!-- <p> -->
+				<!-- A top post from {{ sub2 }}: -->
+				<!-- <a href="{{post2['url']}}">{{post2['title']}}</a> -->
+			<!-- </p> -->
+			<!-- #} -->
 			{% endif %}
+			<br/>
+			<!-- {# -->
+			<!-- {% if comments != [] %} -->
+			<!-- Mashed comments from {{ sub1 }} and {{ sub2 }}:<br/> -->
+			<!-- {% for comment in comments %} -->
+			<!-- <div class="well">{{ comment }}</div> -->
+			<!-- {% endfor %} -->
+			<!-- {% endif %} -->
+			<!-- #} -->
 		</div>
 		{% endif %}
 		<hr/>
