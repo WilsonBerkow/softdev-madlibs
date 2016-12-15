@@ -7,7 +7,7 @@ A **keys** file must be placed in the root directory of the application to allow
 
 Reddit Madlibs is a subreddit content masher that takes content from two different subreddits and produces a post using text processing and merging algorithms.
 
-##Instrcutions of Use and Explantion of Backend
+## Instructions of Use and Explantion of Backend
 To use the application, enter the names of two existing subreddits that you want to mash. The backend component will fetch comment and post data from Reddit and pass the data to the text processing component.
 The text processing component will generate a post using the provided content.
 
