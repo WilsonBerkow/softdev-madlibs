@@ -41,10 +41,10 @@ karolR -- 2016-12-08 12:17
   Created div for older posts.
 
 wilsonB -- 2016-12-08 12:25
-  Improved repo organization: moved dbutil.py and wutangerine.db to (previously empty)
-  data/ folder.
-  Added text editor backup files to .gitignore
-  Routed / to home.html template and /auth to Kenneth's reddit_callback() test page
+	Improved repo organization: moved dbutil.py and wutangerine.db to (previously empty)
+	data/ folder.
+	Added text editor backup files to .gitignore
+	Routed / to home.html template and /auth to Kenneth's reddit_callback() test page
 
 karolR -- 2016-12-08 12:28
   Button in form now submits the form
@@ -73,7 +73,7 @@ kennethL -- 2016-12-09 2:48 PM
 karolR -- 2016-12-12 12:34 PM
 	Worked on custom html styling.
 	Worked on processing of input from app.py.
-	
+
 kennethL -- 2016-12-12 3:32 PM
 	Added top-level comment processing for Reddit, see /posts/ and /comments/ in
 	app.py for example usage
@@ -111,3 +111,10 @@ karolR - 2016-12-14 10:25 PM
 
 karolR - 2016-12-14 10:36 PM
        Fixed devlog.txt name formatting.
+
+wilsonB -- 2016-12-14 10:30 PM
+	Made app.py ignore query arguments if they are empty string (previously, it would crash)
+
+wilsonB -- 2016-12-14 10:55 PM
+	Incorporate comment masher into homepage, by displaying ten comment mashes
+	from the listed subreddits
