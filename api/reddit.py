@@ -24,8 +24,9 @@ DEBUG = None
 class Error(Exception):
   pass
 
-class APIError(Error):
-  pass
+class TokenError(Error):
+  def __init__(self, message):
+    self.message = message
 
 def init(redirect_uri = None):
   global REDIRECT_URI, CLIENT_ID, CLIENT_SECRET, CURRENT_TOKEN, TOKEN_EXPIRATION, REFRESH_TOKEN
@@ -91,7 +92,7 @@ def getToken():
     obj = json.loads(results.read())
 
     if 'access_token' not in obj:
-      raise APIError('Token not found! Please authenticate.')
+      raise TokenError('Token not found! Please authenticate. Mr. DW, please re-copy the keys file.')
     
     updateToken(obj)
     return CURRENT_TOKEN
@@ -111,12 +112,12 @@ def getToken():
     obj = json.loads(results.read())
 
     if 'access_token' not in obj:
-      raise APIError('Token not found! Please authenticate.')
+      raise TokenError('Token not found! Please authenticate. Mr. DW, please re-copy the keys file.')
     
     updateToken(obj)
     return CURRENT_TOKEN
 
-  raise APIError('Token not found! Please authenticate.')
+  raise TokenError('Token not found! Please authenticate. Mr. DW, please re-copy the keys file.')
 
 def getSubredditPosts(subreddit, count = 0):
   token = getToken()
@@ -127,7 +128,7 @@ def getSubredditPosts(subreddit, count = 0):
   }
 
   url = 'https://oauth.reddit.com/r/%s/top/.json?sort=top&t=all' % subreddit
-  print url
+
   results = http.get(url, headers)
   d = json.loads(results.read())
   children = d['data']['children']

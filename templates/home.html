@@ -46,15 +46,12 @@
 			</center>
 		</div>
 		<br><br><br>
-
+		{% if error_message %}
+		{{error_message}}
+		{% endif %}
 		<br><br><br><br><br><br>
 		{% if not noposts %}
 		<div class="well">
-			{% if sub1 == None %}
-			Subreddit /r/{{sub1}} not found!
-			{% elif sub2 == None %}
-			Subreddit /r/{{sub2}} not found!
-			{% else %}
 			<a href="{{sub1}}">{{sub1}}</a> + <a href="{{sub2}}">{{sub2}}</a>!
 			<br><br>
 			{% if mashed %}
@@ -77,8 +74,6 @@
 				<!-- <a href="{{post2['url']}}">{{post2['title']}}</a> -->
 			<!-- </p> -->
 			<!-- #} -->
-			{% endif %}
-			<br/>
 			<!-- {# -->
 			<!-- {% if comments != [] %} -->
 			<!-- Mashed comments from {{ sub1 }} and {{ sub2 }}:<br/> -->
@@ -90,10 +85,10 @@
 		</div>
 		{% endif %}
 		<hr/>
-		<center>
-		<button action="/posts/" type="submit" class="btn btn-warning">Posts</button>
+		<!-- <center> -->
+		<!-- <button action="/posts/" type="submit" class="btn btn-warning">Posts</button> -->
 
-		</center>
+		<!-- </center> -->
 
 		<!-- <div class="row"> -->
 			<!-- <center> -->
