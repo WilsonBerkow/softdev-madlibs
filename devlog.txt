@@ -93,23 +93,23 @@ wilsonB -- 2016-12-12 10:30 PM
 gabrielM -- 2016-12-13 8:16 PM
 	Made n-gramming work better when there isn't a good match
 
-kennethL - 2016-12-14 12:15 PM
+kennethL -- 2016-12-14 12:15 PM
 	Consolidated API keys and things into one keys file
 
-gabrielM - 2016-12-14 3:30 PM
+gabrielM -- 2016-12-14 3:30 PM
 	Created comment text grabber
 
-gabrielM - 2016-12-14 5:30 PM
+gabrielM -- 2016-12-14 5:30 PM
 	Created comment text parser and ngram-er, made test files and a test in
 	mash.py to demonstrate mashing
 
-kennethL - 2016-12-14 8:21 PM
+kennethL -- 2016-12-14 8:21 PM
 	Added retrieval of nested comments and comment JSON parser
 
-karolR - 2016-12-14 10:25 PM
+karolR -- 2016-12-14 10:25 PM
 	Wrote the README file.
 
-karolR - 2016-12-14 10:36 PM
+karolR -- 2016-12-14 10:36 PM
 	Fixed devlog.txt name formatting.
 
 wilsonB -- 2016-12-14 10:30 PM
@@ -119,10 +119,10 @@ wilsonB -- 2016-12-14 10:55 PM
 	Incorporate comment masher into homepage, by displaying ten comment mashes
 	from the listed subreddits
 
-kennethL - 2016-12-14 11:08 PM
+kennethL -- 2016-12-14 11:08 PM
 	Added wrapper for Gabe's masher and sentiment analysis for the resulting mash
 
-karolR - 2016-12-14 11:48 PM
+karolR -- 2016-12-14 11:48 PM
        Cleaned up HTML and addded CSS formatting.
        Fixed broken links to mashed subreddits.
 
@@ -130,3 +130,6 @@ wilsonB -- 2016-12-15 12:15 AM
 	Changed santize function in util/util.py to encode smart-double-quotes as ASCII (")
 	and to use .encode('ascii', 'ignore') to skip other non-ASCII characters, rather than
 	leave them in place (which would cause the server to crash).
+
+karolR -- 2016-12-15 12:48 AM
+       Wrote changes.txt which reflects deviations from original design document intentions.
