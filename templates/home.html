@@ -31,7 +31,7 @@
 						</div>
 					</div>
 					<div class="col-md-6">
-						<div class="form-group">	
+						<div class="form-group">
 							<label for="sub2">Subreddit 2</label>
 							{% if sub2 %}
 							<input type="text" class="form-control" name="sub2" value="{{sub2}}"/>
@@ -45,15 +45,16 @@
 				</form>
 			</center>
 		</div>
-		<br><br><br>
+		<br><br>
 		{% if error_message %}
 		{{error_message}}
 		{% endif %}
-		<br><br>
+		<br>
 		{% if not noposts %}
 		<div class="well">
 			<div id="mashed">
-				<center><b>Mashed <a href="https://reddit.com/r/{{sub1}}">{{sub1}}</a> + <a href="https://reddit.com/r/{{sub2}}">{{sub2}}</a>!</b></center>
+				<center><b>Mashed <a href="https://reddit.com/r/{{sub1}}">/r/{{sub1}}</a> +
+								  <a href="https://reddit.com/r/{{sub2}}">/r/{{sub2}}</a>!</b></center>
 			</div>
 			<br><br>
 			{% for mash in mashed %}
@@ -63,24 +64,6 @@
 					({{mash[1]}})
 				</div>
 			{% endfor %}
-			<!-- {# -->
-			<!-- <p> -->
-				<!-- A top post from {{ sub1 }}: -->
-				<!-- <a href="{{post1['url']}}">{{post1['title']}}</a> -->
-			<!-- </p> -->
-			<!-- <p> -->
-				<!-- A top post from {{ sub2 }}: -->
-				<!-- <a href="{{post2['url']}}">{{post2['title']}}</a> -->
-			<!-- </p> -->
-			<!-- #} -->
-			<!-- {# -->
-			<!-- {% if comments != [] %} -->
-			<!-- Mashed comments from {{ sub1 }} and {{ sub2 }}:<br/> -->
-			<!-- {% for comment in comments %} -->
-			<!-- <div class="well">{{ comment }}</div> -->
-			<!-- {% endfor %} -->
-			<!-- {% endif %} -->
-			<!-- #} -->
 		</div>
 		{% endif %}
 		<hr/>
