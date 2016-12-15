@@ -1,6 +1,3 @@
-if __name__ == '__main__':
-  import os
-  os.chdir('..')
 from util import http, util
 import datetime
 import urllib
@@ -9,11 +6,12 @@ import json
 import os.path
 import random
 
+REDIRECT_URI = None # Define in app.py
+
 CLIENT_ID = None # Read from file
 CLIENT_SECRET = None # Read from file
 KEY_FILE = 'keys'
 
-REDIRECT_URI = None # Define in app.py
 USER_AGENT = 'Web:madlibs_for_reddit:v0.1 (by /u/teamredteam)'
 
 AUTH_CODE = None
@@ -21,6 +19,7 @@ CURRENT_TOKEN = None
 TOKEN_EXPIRATION = None
 REFRESH_TOKEN = None
 DATETIME_FORMAT = '%Y-%m-%d %H:%M:%S.%f'
+DEBUG = None
 
 class Error(Exception):
   pass
@@ -28,8 +27,11 @@ class Error(Exception):
 class APIError(Error):
   pass
 
-def init():
-  global CLIENT_ID, CLIENT_SECRET, CURRENT_TOKEN, TOKEN_EXPIRATION, REFRESH_TOKEN
+def init(redirect_uri = None):
+  global REDIRECT_URI, CLIENT_ID, CLIENT_SECRET, CURRENT_TOKEN, TOKEN_EXPIRATION, REFRESH_TOKEN
+
+  if redirect_uri:
+    REDIRECT_URI = redirect_uri
 
   if os.path.isfile(KEY_FILE):
     s = open(KEY_FILE).read().split('\n')
@@ -68,7 +70,7 @@ def getToken():
   url = 'https://www.reddit.com/api/v1/access_token'
 
   headers = {
-    'Authorization': 'Basic ' + http.httpBasicAuth(CLIENT_ID, CLIENT_SECRET),
+    'Authorization': http.httpBasicAuthStr(CLIENT_ID, CLIENT_SECRET),
     'User-Agent': USER_AGENT
   }
 
@@ -123,7 +125,8 @@ def getSubredditPosts(subreddit, count = 0):
     'User-Agent': USER_AGENT
   }
 
-  url = 'https://oauth.reddit.com/r/%s/top/.json?t=all' % subreddit
+  url = 'https://oauth.reddit.com/r/%s/top/.json?sort=top&t=all' % subreddit
+  print url
   results = http.get(url, headers)
   d = json.loads(results.read())
   children = d['data']['children']
@@ -146,6 +149,25 @@ def getSubredditRandomPost(subreddit, count = 0):
 
   return None
 
+def parseCommentJSON(obj):
+  global DEBUG
+  
+  if 'body' not in obj['data']:
+    return None
+  
+  newComment = {'author': obj['data']['author'], 'body': obj['data']['body'], 'replies': []}
+
+  DEBUG = obj
+  
+  if obj['data']['replies']:
+    for reply in obj['data']['replies']['data']['children']:
+      newReply = parseCommentJSON(reply)
+
+      if newReply:
+        newComment['replies'].append(newReply)
+
+  return newComment
+
 def getTopLevelComments(subreddit, postID, count = 0):
   token = getToken()
 
@@ -159,17 +181,32 @@ def getTopLevelComments(subreddit, postID, count = 0):
   d = json.loads(results.read())
   children = d[1]['data']['children'][:-1]
   n = min(count, len(children)) if count > 0 else len(children)
-  comments = [children[i]['data'] for i in range(n)]
+  comments = [parseCommentJSON(children[i]) for i in range(n)]
   return comments
+
+def commentBodiesAsText(comments):
+  ret = ''
+
+  for comment in comments:
+    ret += comment['body'] + '\n'
+    ret += commentBodiesAsText(comment['replies']) + '\n'
+
+  return ret  
 
 def getLotsOfCommentText(subreddit, numCalls):
   posts = getSubredditPosts(subreddit)
   numCalls -= 1
   lotsOfComments = []
+
   for post in posts[:numCalls]:
     comments = getTopLevelComments(subreddit, post['id'])
+
     for comment in comments:
       if comment['author'] != 'AutoModerator':  # madman himself
         lotsOfComments.append(comment['body'])
+
   return lotsOfComments
 
+if __name__ == '__main__':
+  import os
+  os.chdir('..')

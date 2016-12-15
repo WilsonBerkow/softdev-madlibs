@@ -63,9 +63,11 @@ def reddit_callback():
   reddit.AUTH_CODE = code
   return redirect('posts')
 
-if __name__ == '__main__':
+def init():
   data.initdb()
+  reddit.init(redirect_uri = 'http://127.0.0.1:5000/reddit_callback')
+
+if __name__ == '__main__':
+  init()
   app.debug = True
-  reddit.init()
-  reddit.REDIRECT_URI = 'http://127.0.0.1:5000/reddit_callback'
   app.run()

@@ -84,7 +84,7 @@ gmarks -- 2016-12-12 ??:?? PM
 WilsonBerkow -- 2016-12-12 9:50 PM
 	Filled in gaps in home.html template and provided more arguments, to choose
 	the top post from each chosen subreddit and display its title, hyperlinked
-	to the comments.
+	to the comments
 
 WilsoBerkow -- 2016-12-12 10:30 PM
 	Made / page select a random of top 30 posts from each subreddit, to add variation
@@ -97,7 +97,11 @@ kli - 2016-12-14 12:15 PM
 	Consolidated API keys and things into one keys file
 
 gmarks - 2015-12-14 3:30 PM
-    Created comment text grabber
+  Created comment text grabber
 
 gmarks - 2015-12-14 5:30 PM
-    Created comment text parser and ngram-er, made test files and a test in mash.py to demonstrate mashing
+  Created comment text parser and ngram-er, made test files and a test in
+	mash.py to demonstrate mashing
+
+kli - 2015-12-14 8:21 PM
+	Added retrieval of nested comments and comment JSON parser
